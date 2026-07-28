@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>한*** · 빅데이터 결합안심 시스템 · OpenStack Private Cloud Engineer</title>
+<title>아이*** · IaaS 플랫폼 구축 · OpenStack Private Cloud Engineer</title>
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☁️%3C/text%3E%3C/svg%3E">
 <style>
@@ -107,30 +107,28 @@
     <a href="../../architecture/">Architecture</a>
   </nav>
 
-  <h2>한*** · 빅데이터 결합안심 시스템</h2>
-  <p><span class="badge badge-build">설계구축</span> <span class="muted">공공기관</span></p>
+  <h2>아이*** · IaaS 플랫폼 구축</h2>
+  <p><span class="badge badge-build">설계구축</span> <span class="muted">2025.11 ~ 현재 · PL</span></p>
   <p>
-    대용량 정형·비정형 데이터를 안전하게 결합·분석할 격리된 프라이빗 클라우드 인프라가 필요했습니다.
-  </p>
-  <p>
-    <a href="../../architecture/">OpenStack 프라이빗 클라우드</a>를 구축하고 Glance/Cinder 스토리지를 구성했으며,
-    배포 자동화 도구를 적용했습니다. 운영 과정에서는 스토리지 드라이버 호환성, 이미지 저장 권한,
-    네트워크 접근 제한 등 실제 배포 환경에서만 드러나는 이슈들을 하나씩 해결했습니다.
+    정보 자원 관리 효율화와 서비스 고도화를 위한 프라이빗 클라우드 인프라 구축이 필요했습니다.
+    PL(Project Leader)로서 <a href="../../architecture/">아키텍처 설계</a>부터 하드웨어 자원 산정,
+    구축까지 전 과정을 이끌었습니다.
   </p>
 
   <div class="table-scroll">
     <table>
-      <caption>주요 이슈 대응</caption>
-      <thead><tr><th>이슈</th><th>원인</th><th>조치</th></tr></thead>
+      <caption>구성 개요</caption>
+      <thead><tr><th>영역</th><th>구성</th></tr></thead>
       <tbody>
-        <tr><td>PureStorage 드라이버 미지원</td><td>Cinder venv에 벤더 드라이버 패키지 부재</td><td>wheel 패키지 배포서버 등록 후 venv에 설치, cinder-volume 재기동</td></tr>
-        <tr><td>Netapp 스토리지 이미지 저장 실패</td><td>glance-api privsep 헬퍼가 venv 실행 경로에 대한 권한 없음</td><td>rootwrap.conf exec_dirs에 glance venv bin 경로 추가</td></tr>
-        <tr><td>Compute 노드 배포 시 패키지 설치 실패</td><td>Compute → Controller 저장소 간 방화벽 포트 차단</td><td>배포 노드 경유로 임시 우회 설치 후 완료 시 원복</td></tr>
+        <tr><td>네트워크</td><td>방화벽·ToR·MGMT 스위치 이중화, SAN 스위치 이중화</td></tr>
+        <tr><td>컴퓨트</td><td>배포 노드 1대 + Controller 3중화 HA + Compute 노드 풀</td></tr>
+        <tr><td>스토리지</td><td>SAN(블록) + NAS(파일) 이중화 구성</td></tr>
+        <tr><td>이관</td><td>기존 시스템 VM 이관 및 검증</td></tr>
       </tbody>
     </table>
   </div>
 
-  <p>이 과정을 거쳐 배포 이슈 및 운영 조치 대응 체계를 확립해 안정적인 서비스 운영을 지원했습니다.</p>
+  <p>표준 산출물(아키텍처정의서, 구축결과서, 운영 매뉴얼)까지 작성해 인수인계 가능한 형태로 마무리했습니다.</p>
 
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>

@@ -13,6 +13,10 @@
     --muted:#666666;
     --border:#eaeaea;
     --link:#111111;
+    --accent:#0070f3;
+    --accent-bg:rgba(0,112,243,0.08);
+    --accent-2:#f5a623;
+    --accent-2-bg:rgba(245,166,35,0.10);
     --max:640px;
   }
   @media (prefers-color-scheme: dark){
@@ -22,6 +26,10 @@
       --muted:#999999;
       --border:#2a2a2a;
       --link:#f2f2f2;
+      --accent:#3291ff;
+      --accent-bg:rgba(50,145,255,0.12);
+      --accent-2:#ffb84d;
+      --accent-2-bg:rgba(255,184,77,0.12);
     }
   }
   *{box-sizing:border-box;}
@@ -56,20 +64,29 @@
 
   .entry{margin-bottom:32px;}
   .entry:last-child{margin-bottom:0;}
-  .entry-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
   .entry-head strong{font-size:16px;font-weight:600;}
   .entry-head span{color:var(--muted);font-size:14.5px;white-space:nowrap;}
   .entry p{color:var(--muted);font-size:15.5px;margin-bottom:6px;}
 
+  .badge{
+    display:inline-block;font-size:11.5px;font-weight:600;
+    padding:2px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .badge-build{color:var(--accent);background:var(--accent-bg);}
+  .badge-upgrade{color:var(--accent-2);background:var(--accent-2-bg);}
+  .badge-poc{color:#22a06b;background:rgba(34,160,107,0.10);}
+
   table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px;}
-  th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--border);}
+  th{text-align:left;font-weight:700;font-size:13px;color:var(--accent);padding:8px 10px 8px 0;border-bottom:2px solid var(--accent-bg);}
   td{padding:10px 10px 10px 0;border-bottom:1px solid var(--border);color:var(--fg);vertical-align:top;}
   tr:last-child td{border-bottom:none;}
+  tbody tr:hover td{background:var(--accent-bg);}
   .table-scroll{overflow-x:auto;margin-bottom:32px;}
   .table-scroll:last-child{margin-bottom:0;}
   caption{text-align:left;font-size:13px;color:var(--muted);margin-bottom:8px;caption-side:top;}
 
-  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin:8px 0 32px;}
+  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin:8px 0 32px;background:var(--accent-bg);}
   .diagram svg{display:block;min-width:600px;}
 
   .next-link{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);}
@@ -91,7 +108,7 @@
   </nav>
 
   <h2>K*** (한***)</h2>
-  <p class="muted">공공기관</p>
+  <p><span class="badge badge-build">설계구축</span> <span class="muted">공공기관</span></p>
   <p>
     시험·연구 데이터 처리를 위한 클러스터를 표준화된 방식으로 신속히 배포해야 했습니다.
   </p>

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>세*** PoC 2026 · OpenStack Private Cloud Engineer</title>
+<title>신*** OpenStack PoC · OpenStack Private Cloud Engineer</title>
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☁️%3C/text%3E%3C/svg%3E">
 <style>
@@ -13,6 +13,10 @@
     --muted:#666666;
     --border:#eaeaea;
     --link:#111111;
+    --accent:#0070f3;
+    --accent-bg:rgba(0,112,243,0.08);
+    --accent-2:#f5a623;
+    --accent-2-bg:rgba(245,166,35,0.10);
     --max:640px;
   }
   @media (prefers-color-scheme: dark){
@@ -22,6 +26,10 @@
       --muted:#999999;
       --border:#2a2a2a;
       --link:#f2f2f2;
+      --accent:#3291ff;
+      --accent-bg:rgba(50,145,255,0.12);
+      --accent-2:#ffb84d;
+      --accent-2-bg:rgba(255,184,77,0.12);
     }
   }
   *{box-sizing:border-box;}
@@ -56,20 +64,29 @@
 
   .entry{margin-bottom:32px;}
   .entry:last-child{margin-bottom:0;}
-  .entry-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
   .entry-head strong{font-size:16px;font-weight:600;}
   .entry-head span{color:var(--muted);font-size:14.5px;white-space:nowrap;}
   .entry p{color:var(--muted);font-size:15.5px;margin-bottom:6px;}
 
+  .badge{
+    display:inline-block;font-size:11.5px;font-weight:600;
+    padding:2px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .badge-build{color:var(--accent);background:var(--accent-bg);}
+  .badge-upgrade{color:var(--accent-2);background:var(--accent-2-bg);}
+  .badge-poc{color:#22a06b;background:rgba(34,160,107,0.10);}
+
   table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px;}
-  th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--border);}
+  th{text-align:left;font-weight:700;font-size:13px;color:var(--accent);padding:8px 10px 8px 0;border-bottom:2px solid var(--accent-bg);}
   td{padding:10px 10px 10px 0;border-bottom:1px solid var(--border);color:var(--fg);vertical-align:top;}
   tr:last-child td{border-bottom:none;}
+  tbody tr:hover td{background:var(--accent-bg);}
   .table-scroll{overflow-x:auto;margin-bottom:32px;}
   .table-scroll:last-child{margin-bottom:0;}
   caption{text-align:left;font-size:13px;color:var(--muted);margin-bottom:8px;caption-side:top;}
 
-  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin:8px 0 32px;}
+  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin:8px 0 32px;background:var(--accent-bg);}
   .diagram svg{display:block;min-width:600px;}
 
   .next-link{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);}
@@ -90,28 +107,19 @@
     <a href="../../architecture/">Architecture</a>
   </nav>
 
-  <h2>세*** PoC 2026</h2>
-  <p class="muted">PoC · 2026</p>
+  <h2>신*** OpenStack PoC</h2>
+  <p><span class="badge badge-poc">PoC</span> <span class="muted">금융 · 2024.10 ~ 2024.11</span></p>
   <p>
-    신규 도입을 검토 중인 고객사를 위해 실제 운영 시나리오 기반의 검증이 필요했습니다.
-    Horizon 커스터마이징, 컨트롤/컴퓨트 네트워크 구성 후 Cinder Snapshot·Backup 시나리오를 검증했습니다.
+    금융권 특성상 도입 전 검증이 까다로운 만큼, 실제 운영 조건에 가까운 시나리오로
+    OpenStack 프라이빗 클라우드의 타당성을 확인해야 했습니다.
   </p>
-
-  <div class="table-scroll">
-    <table>
-      <caption>Cinder Snapshot vs Backup</caption>
-      <thead><tr><th>구분</th><th>Snapshot</th><th>Backup</th></tr></thead>
-      <tbody>
-        <tr><td>저장 위치</td><td>동일 스토리지 백엔드</td><td>외부 스토리지 (Swift/S3/NFS)</td></tr>
-        <tr><td>방식</td><td>Copy-on-Write (포인터)</td><td>전체 데이터 복사(+증분)</td></tr>
-        <tr><td>속도</td><td>빠름 (즉시)</td><td>느림 (데이터 전송)</td></tr>
-        <tr><td>원본 삭제 시</td><td>스냅샷도 함께 삭제</td><td>독립적으로 유지</td></tr>
-        <tr><td>적합 시나리오</td><td>빠른 롤백, 단기 보관, 템플릿 복제</td><td>재해복구(DR), 장기 보관, 사이트 이관</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p>핵심 기능에 대한 PoC 검증을 완료해 도입 판단 근거를 제공했습니다.</p>
+  <p>
+    클라우드 아키텍트로서 PoC 환경의 <a href="../../architecture/">아키텍처 설계</a>부터
+    구축까지 담당했고, 짧은 기간 안에 핵심 기능 검증을 마쳐야 하는 제약이 있었습니다.
+  </p>
+  <p>
+    금융권 도입 검토에 필요한 기술 검증 결과를 제공하며 PoC를 완료했습니다.
+  </p>
 
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>

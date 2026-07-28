@@ -13,6 +13,10 @@
     --muted:#666666;
     --border:#eaeaea;
     --link:#111111;
+    --accent:#0070f3;
+    --accent-bg:rgba(0,112,243,0.08);
+    --accent-2:#f5a623;
+    --accent-2-bg:rgba(245,166,35,0.10);
     --max:640px;
   }
   @media (prefers-color-scheme: dark){
@@ -22,6 +26,10 @@
       --muted:#999999;
       --border:#2a2a2a;
       --link:#f2f2f2;
+      --accent:#3291ff;
+      --accent-bg:rgba(50,145,255,0.12);
+      --accent-2:#ffb84d;
+      --accent-2-bg:rgba(255,184,77,0.12);
     }
   }
   *{box-sizing:border-box;}
@@ -56,20 +64,29 @@
 
   .entry{margin-bottom:32px;}
   .entry:last-child{margin-bottom:0;}
-  .entry-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
   .entry-head strong{font-size:16px;font-weight:600;}
   .entry-head span{color:var(--muted);font-size:14.5px;white-space:nowrap;}
   .entry p{color:var(--muted);font-size:15.5px;margin-bottom:6px;}
 
+  .badge{
+    display:inline-block;font-size:11.5px;font-weight:600;
+    padding:2px 9px;border-radius:999px;white-space:nowrap;
+  }
+  .badge-build{color:var(--accent);background:var(--accent-bg);}
+  .badge-upgrade{color:var(--accent-2);background:var(--accent-2-bg);}
+  .badge-poc{color:#22a06b;background:rgba(34,160,107,0.10);}
+
   table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px;}
-  th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--border);}
+  th{text-align:left;font-weight:700;font-size:13px;color:var(--accent);padding:8px 10px 8px 0;border-bottom:2px solid var(--accent-bg);}
   td{padding:10px 10px 10px 0;border-bottom:1px solid var(--border);color:var(--fg);vertical-align:top;}
   tr:last-child td{border-bottom:none;}
+  tbody tr:hover td{background:var(--accent-bg);}
   .table-scroll{overflow-x:auto;margin-bottom:32px;}
   .table-scroll:last-child{margin-bottom:0;}
   caption{text-align:left;font-size:13px;color:var(--muted);margin-bottom:8px;caption-side:top;}
 
-  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin:8px 0 32px;}
+  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin:8px 0 32px;background:var(--accent-bg);}
   .diagram svg{display:block;min-width:600px;}
 
   .next-link{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);}
@@ -95,53 +112,53 @@
 
   <div class="diagram">
     <svg viewBox="0 0 980 420" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,sans-serif">
-      <rect x="390" y="10" width="200" height="46" rx="4" fill="none" stroke="#888" stroke-width="1.2"/>
+      <rect x="390" y="10" width="200" height="46" rx="4" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="1.5"/>
       <text x="490" y="38" fill="currentColor" font-size="13" text-anchor="middle" font-weight="700">NPD Deployer (Director)</text>
 
-      <line x1="490" y1="56" x2="490" y2="80" stroke="#999" stroke-width="1"/>
-      <line x1="230" y1="80" x2="750" y2="80" stroke="#999" stroke-width="1"/>
-      <line x1="230" y1="80" x2="230" y2="100" stroke="#999" stroke-width="1"/>
-      <line x1="750" y1="80" x2="750" y2="100" stroke="#999" stroke-width="1"/>
+      <line x1="490" y1="56" x2="490" y2="80" stroke="var(--accent)" stroke-width="1"/>
+      <line x1="230" y1="80" x2="750" y2="80" stroke="var(--accent)" stroke-width="1"/>
+      <line x1="230" y1="80" x2="230" y2="100" stroke="var(--accent)" stroke-width="1"/>
+      <line x1="750" y1="80" x2="750" y2="100" stroke="var(--accent)" stroke-width="1"/>
 
       <text x="230" y="118" fill="currentColor" font-size="12" text-anchor="middle" font-weight="700">STANDARD (분산형)</text>
       <text x="750" y="118" fill="currentColor" font-size="12" text-anchor="middle" font-weight="700">HCI (초융합형)</text>
 
-      <rect x="90" y="134" width="140" height="52" rx="4" fill="none" stroke="#999"/>
+      <rect x="90" y="134" width="140" height="52" rx="4" fill="none" stroke="var(--accent)"/>
       <text x="160" y="155" fill="currentColor" font-size="11.5" text-anchor="middle" font-weight="700">Controller</text>
-      <text x="160" y="172" fill="#888" font-size="10" text-anchor="middle">Nova/Neutron/Keystone</text>
+      <text x="160" y="172" fill="var(--muted)" font-size="10" text-anchor="middle">Nova/Neutron/Keystone</text>
 
-      <rect x="250" y="134" width="140" height="52" rx="4" fill="none" stroke="#999"/>
+      <rect x="250" y="134" width="140" height="52" rx="4" fill="none" stroke="var(--accent)"/>
       <text x="320" y="155" fill="currentColor" font-size="11.5" text-anchor="middle" font-weight="700">Compute</text>
-      <text x="320" y="172" fill="#888" font-size="10" text-anchor="middle">Nova Compute / Libvirt</text>
+      <text x="320" y="172" fill="var(--muted)" font-size="10" text-anchor="middle">Nova Compute / Libvirt</text>
 
-      <rect x="160" y="216" width="140" height="52" rx="4" fill="none" stroke="#999"/>
+      <rect x="160" y="216" width="140" height="52" rx="4" fill="none" stroke="var(--accent)"/>
       <text x="230" y="237" fill="currentColor" font-size="11.5" text-anchor="middle" font-weight="700">Storage</text>
-      <text x="230" y="254" fill="#888" font-size="10" text-anchor="middle">Ceph OSD / RGW</text>
+      <text x="230" y="254" fill="var(--muted)" font-size="10" text-anchor="middle">Ceph OSD / RGW</text>
 
-      <line x1="160" y1="186" x2="160" y2="216" stroke="#999"/>
-      <line x1="320" y1="186" x2="230" y2="216" stroke="#999"/>
-      <line x1="160" y1="200" x2="230" y2="200" stroke="#999"/>
+      <line x1="160" y1="186" x2="160" y2="216" stroke="var(--accent)"/>
+      <line x1="320" y1="186" x2="230" y2="216" stroke="var(--accent)"/>
+      <line x1="160" y1="200" x2="230" y2="200" stroke="var(--accent)"/>
 
-      <rect x="650" y="134" width="200" height="90" rx="4" fill="none" stroke="#999"/>
+      <rect x="650" y="134" width="200" height="90" rx="4" fill="none" stroke="var(--accent)"/>
       <text x="750" y="158" fill="currentColor" font-size="11.5" text-anchor="middle" font-weight="700">Converged Node ×N</text>
-      <text x="750" y="176" fill="#888" font-size="10" text-anchor="middle">Compute + Ceph OSD</text>
-      <text x="750" y="192" fill="#888" font-size="10" text-anchor="middle">(단일 노드에 통합 배치)</text>
-      <text x="750" y="210" fill="#888" font-size="10" text-anchor="middle">소규모/엣지 환경 최적화</text>
+      <text x="750" y="176" fill="var(--muted)" font-size="10" text-anchor="middle">Compute + Ceph OSD</text>
+      <text x="750" y="192" fill="var(--muted)" font-size="10" text-anchor="middle">(단일 노드에 통합 배치)</text>
+      <text x="750" y="210" fill="var(--muted)" font-size="10" text-anchor="middle">소규모/엣지 환경 최적화</text>
 
-      <rect x="700" y="248" width="100" height="40" rx="4" fill="none" stroke="#999"/>
+      <rect x="700" y="248" width="100" height="40" rx="4" fill="none" stroke="var(--accent)"/>
       <text x="750" y="272" fill="currentColor" font-size="10.5" text-anchor="middle" font-weight="700">Controller</text>
-      <line x1="750" y1="224" x2="750" y2="248" stroke="#999"/>
+      <line x1="750" y1="224" x2="750" y2="248" stroke="var(--accent)"/>
 
-      <rect x="70" y="310" width="840" height="70" rx="4" fill="none" stroke="#999" stroke-dasharray="4 3"/>
-      <text x="490" y="334" fill="currentColor" font-size="12" text-anchor="middle" font-weight="700">Masakari + Pacemaker · Instance / Host HA</text>
-      <text x="490" y="354" fill="#888" font-size="10.5" text-anchor="middle">인스턴스 장애 자동 재기동 · 호스트 장애 시 evacuate</text>
-      <text x="490" y="370" fill="#888" font-size="10.5" text-anchor="middle">HAProxy 기반 API 로드밸런싱 (Controller ↔ 외부망)</text>
+      <rect x="70" y="310" width="840" height="70" rx="4" fill="var(--accent-2-bg)" stroke="var(--accent-2)" stroke-width="1.5" stroke-dasharray="4 3"/>
+      <text x="490" y="334" fill="var(--accent-2)" font-size="12" text-anchor="middle" font-weight="700">Masakari + Pacemaker · Instance / Host HA</text>
+      <text x="490" y="354" fill="var(--muted)" font-size="10.5" text-anchor="middle">인스턴스 장애 자동 재기동 · 호스트 장애 시 evacuate</text>
+      <text x="490" y="370" fill="var(--muted)" font-size="10.5" text-anchor="middle">HAProxy 기반 API 로드밸런싱 (Controller ↔ 외부망)</text>
 
-      <line x1="230" y1="268" x2="230" y2="310" stroke="#999"/>
-      <line x1="750" y1="288" x2="750" y2="310" stroke="#999"/>
+      <line x1="230" y1="268" x2="230" y2="310" stroke="var(--accent)"/>
+      <line x1="750" y1="288" x2="750" y2="310" stroke="var(--accent)"/>
 
-      <rect x="70" y="396" width="840" height="20" rx="3" fill="none" stroke="#999"/>
-      <text x="490" y="410" fill="#888" font-size="10" text-anchor="middle">br-mgmt / br-vxlan / br-ext — 외부/관리/터널 네트워크</text>
+      <rect x="70" y="396" width="840" height="20" rx="3" fill="none" stroke="var(--accent)"/>
+      <text x="490" y="410" fill="var(--muted)" font-size="10" text-anchor="middle">br-mgmt / br-vxlan / br-ext — 외부/관리/터널 네트워크</text>
     </svg>
   </div>
 
@@ -218,6 +235,23 @@
     방화벽/스위치 이중화, Controller 3중화 HA, SAN/NAS 스토리지 이중화로 단일 장애점을 제거하고,
     Horizon 100여 개 테스트 케이스 기반 기능 검증을 거쳐 상품화했습니다.
   </p>
+
+  <h2 style="margin-top:56px;">Storage: Snapshot vs Backup</h2>
+  <p>Cinder 볼륨 보호 전략을 세울 때 기준으로 삼는 두 방식의 차이입니다.</p>
+
+  <div class="table-scroll">
+    <table>
+      <caption>Cinder Snapshot vs Backup</caption>
+      <thead><tr><th>구분</th><th>Snapshot</th><th>Backup</th></tr></thead>
+      <tbody>
+        <tr><td>저장 위치</td><td>동일 스토리지 백엔드</td><td>외부 스토리지 (Swift/S3/NFS)</td></tr>
+        <tr><td>방식</td><td>Copy-on-Write (포인터)</td><td>전체 데이터 복사(+증분)</td></tr>
+        <tr><td>속도</td><td>빠름 (즉시)</td><td>느림 (데이터 전송)</td></tr>
+        <tr><td>원본 삭제 시</td><td>스냅샷도 함께 삭제</td><td>독립적으로 유지</td></tr>
+        <tr><td>적합 시나리오</td><td>빠른 롤백, 단기 보관, 템플릿 복제</td><td>재해복구(DR), 장기 보관, 사이트 이관</td></tr>
+      </tbody>
+    </table>
+  </div>
 
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>
