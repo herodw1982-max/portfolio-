@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenStack Private Cloud Engineer</title>
+<meta name="description" content="OpenStack 기반 프라이빗 클라우드 설계·구축·운영 엔지니어. NPD Maker 배포 자동화, 성능 튜닝, Masakari HA, 고객사 구축 이력.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☁️%3C/text%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#ffffff;
+    --fg:#111111;
+    --muted:#666666;
+    --border:#eaeaea;
+    --link:#111111;
+    --max:640px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#111111;
+      --fg:#f2f2f2;
+      --muted:#999999;
+      --border:#2a2a2a;
+      --link:#f2f2f2;
+    }
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,"Noto Sans KR",sans-serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--max);margin:0 auto;padding:64px 24px 96px;}
+  a{color:var(--link);text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px;}
+  a:hover{text-decoration-color:currentColor;}
+  h1{font-size:22px;font-weight:700;margin:0 0 4px;}
+  h2{font-size:17px;font-weight:600;margin:56px 0 16px;color:var(--fg);}
+  h2:first-of-type{margin-top:48px;}
+  p{margin:0 0 16px;color:var(--fg);}
+  .muted{color:var(--muted);}
+  .intro p{margin-bottom:14px;}
+
+  nav.top{margin-bottom:40px;font-size:15px;}
+  nav.top a{margin-right:16px;color:var(--muted);text-decoration:none;}
+  nav.top a:hover{color:var(--fg);text-decoration:underline;}
+
+  ul.plain{list-style:none;margin:0;padding:0;}
+  ul.plain li{margin-bottom:6px;color:var(--fg);}
+
+  .row{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    padding:14px 0;
+    border-bottom:1px solid var(--border);
+  }
+  .row:last-child{border-bottom:none;}
+  .row .left{color:var(--fg);}
+  .row .right{color:var(--muted);font-size:15px;white-space:nowrap;}
+
+  .entry{margin-bottom:32px;}
+  .entry:last-child{margin-bottom:0;}
+  .entry-head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px;}
+  .entry-head strong{font-size:16px;font-weight:600;}
+  .entry-head span{color:var(--muted);font-size:14.5px;white-space:nowrap;}
+  .entry p{color:var(--muted);font-size:15.5px;margin-bottom:6px;}
+
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:8px;}
+  th{text-align:left;font-weight:600;font-size:13px;color:var(--muted);padding:8px 10px 8px 0;border-bottom:1px solid var(--border);}
+  td{padding:10px 10px 10px 0;border-bottom:1px solid var(--border);color:var(--fg);vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  .table-scroll{overflow-x:auto;}
+
+  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin-top:8px;}
+  .diagram svg{display:block;min-width:600px;}
+
+  footer{margin-top:80px;padding-top:24px;border-top:1px solid var(--border);color:var(--muted);font-size:14px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <nav class="top">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#work">Work</a>
+    <a href="#architecture">Architecture</a>
+  </nav>
+
+  <div class="intro">
+    <h1>OpenStack 프라이빗 클라우드 엔지니어</h1>
+    <p class="muted">설계 · 구축 · 운영 · 성능 튜닝</p>
+    <p>
+      OpenStack-Ansible / Kolla-Ansible 기반 프라이빗 클라우드 자동화 배포 솔루션을 개발하고,
+      공공·민간 고객사 환경에 직접 구축·운영하며 장애 대응 체계를 만들어왔습니다.
+    </p>
+    <p>
+      배포 자동화 솔루션(NPD Maker)을 v1.1부터 v2.3까지 지속 개발했고, 4개 고객사 환경에
+      직접 구축·운영하며 배포 이슈부터 성능 저하, 장애 복구까지 실제 문제를 해결했습니다.
+    </p>
+  </div>
+
+  <h2 id="skills">Skills</h2>
+  <ul class="plain">
+    <li><strong>Cloud Platform</strong> — OpenStack (Nova, Neutron, Cinder, Glance, Keystone, Horizon), Masakari (Instance/Host HA)</li>
+    <li><strong>Deployment</strong> — OpenStack-Ansible, Kolla-Ansible, Docker, 오프라인(폐쇄망) 배포 패키징</li>
+    <li><strong>Storage</strong> — Ceph, Ceph RBD, RGW, MinIO, Cinder Snapshot/Backup</li>
+    <li><strong>Database</strong> — MariaDB, Galera, RabbitMQ, Memcached</li>
+    <li><strong>Network / Security</strong> — Netplan, HAProxy, TLS/SSL, Libvirt, 보안취약점 진단·조치</li>
+    <li><strong>Monitoring</strong> — sysstat, journald, systemd-coredump, kdump, Gitea</li>
+  </ul>
+
+  <h2 id="experience">Experience</h2>
+
+  <div class="entry">
+    <div class="entry-head"><strong>프라이빗 클라우드 배포 솔루션 개발 (NPD Maker)</strong><span>2024 1Q – 2025 3Q</span></div>
+    <p>OSA 배포 구조를 커스텀한 Docker 기반 자동 설치기 개발 (v1.1 → v2.3). Standard/HCI 두 아키텍처를 단일 도구로 지원하고, Antelope → Caracal 버전 마이그레이션을 수행했습니다.</p>
+  </div>
+  <div class="entry">
+    <div class="entry-head"><strong>OSA/커널 성능 튜닝 프레임워크 개발</strong><span>v1.4.x</span></div>
+    <p>Nova/Neutron/Galera/RabbitMQ 등 전 계층 파라미터를 표준화하고, 튜닝 전/후 자동 벤치마크 파이프라인을 구축했습니다.</p>
+  </div>
+  <div class="entry">
+    <div class="entry-head"><strong>Masakari 기반 Instance HA 구축</strong><span>Kolla-Ansible</span></div>
+    <p>Kolla-Ansible 멀티노드 클러스터에 Masakari를 배포하고, 인스턴스 자동 복구 및 호스트 장애 evacuate 시나리오를 실증했습니다.</p>
+  </div>
+  <div class="entry">
+    <div class="entry-head"><strong>내부 형상관리(Gitea) 인프라 구축</strong></div>
+    <p>GitLab 대비 기능/운영 비교 검토 후 내부 Gitea를 구축하고 브랜치/태그 관리 체계를 수립했습니다.</p>
+  </div>
+
+  <h2 id="work">Work</h2>
+
+  <div class="entry">
+    <div class="entry-head"><strong>한*** · 빅데이터 결합안심 시스템</strong><span class="muted">공공기관</span></div>
+    <p>대용량 데이터를 안전하게 결합·분석할 격리된 프라이빗 클라우드 인프라가 필요했습니다. OpenStack 클라우드를 구축하고 Glance/Cinder를 구성해 배포 이슈와 운영 조치 대응 체계를 확립했습니다.</p>
+  </div>
+  <div class="entry">
+    <div class="entry-head"><strong>K*** (한***)</strong><span class="muted">공공기관</span></div>
+    <p>시험·연구 데이터 처리 클러스터를 표준화된 방식으로 신속히 배포해야 했습니다. netplan 네트워크 구성과 전용 배포 스크립트로 과정을 자동화했습니다.</p>
+  </div>
+  <div class="entry">
+    <div class="entry-head"><strong>드***</strong><span class="muted">민간기업</span></div>
+    <p>DB 메모리 사용량 증가와 쿼리 성능 저하 이슈가 있었습니다. MariaDB 메모리·쿼리 사용량을 분석해 성능 조회 체계를 구성했습니다.</p>
+  </div>
+  <div class="entry">
+    <div class="entry-head"><strong>세*** PoC 2026</strong><span class="muted">PoC</span></div>
+    <p>신규 도입 검토를 위한 운영 시나리오 기반 검증이 필요했습니다. Horizon 커스터마이징과 네트워크 구성 후 Cinder Snapshot·Backup을 테스트해 도입 판단 근거를 제공했습니다.</p>
+  </div>
+
+  <h2 id="architecture">Architecture</h2>
+  <p>NPD Maker는 단일 배포 도구로 Standard(분산형)와 HCI(초융합형) 두 가지 토폴로지를 지원합니다.</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 980 420" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,sans-serif">
+      <rect x="390" y="10" width="200" height="46" rx="4" fill="none" stroke="#888" stroke-width="1.2"/>
+      <text x="490" y="38" fill="currentColor" font-size="13" text-anchor="middle" font-weight="700">NPD Deployer (Director)</text>
+
+      <line x1="490" y1="56" x2="490" y2="80" stroke="#999" stroke-width="1"/>
+      <line x1="230" y1="80" x2="750" y2="80" stroke="#999" stroke-width="1"/>
+      <line x1="230" y1="80" x2="230" y2="100" stroke="#999" stroke-width="1"/>
+      <line x1="750" y1="80" x2="750" y2="100" stroke="#999" stroke-width="1"/>
+
+      <text x="230" y="118" fill="currentColor" font-size="12" text-anchor="middle" font-weight="700">STANDARD (분산형)</text>
+      <text x="750" y="118" fill="currentColor" font-size="12" text-anchor="middle" font-weight="700">HCI (초융합형)</text>
+
+      <rect x="90" y="134" width="140" height="52" rx="4" fill="none" stroke="#999"/>
+      <text x="160" y="155" fill="currentColor" font-size="11.5" text-anchor="middle" font-weight="700">Controller</text>
+      <text x="160" y="172" fill="#888" font-size="10" text-anchor="middle">Nova/Neutron/Keystone</text>
+
+      <rect x="250" y="134" width="140" height="52" rx="4" fill="none" stroke="#999"/>
+      <text x="320" y="155" fill="currentColor" font-size="11.5" text-anchor="middle" font-weight="700">Compute</text>
+      <text x="320" y="172" fill="#888" font-size="10" text-anchor="middle">Nova Compute / Libvirt</text>
+
+      <rect x="160" y="216" width="140" height="52" rx="4" fill="none" stroke="#999"/>
+      <text x="230" y="237" fill="currentColor" font-size="11.5" text-anchor="middle" font-weight="700">Storage</text>
+      <text x="230" y="254" fill="#888" font-size="10" text-anchor="middle">Ceph OSD / RGW</text>
+
+      <line x1="160" y1="186" x2="160" y2="216" stroke="#999"/>
+      <line x1="320" y1="186" x2="230" y2="216" stroke="#999"/>
+      <line x1="160" y1="200" x2="230" y2="200" stroke="#999"/>
+
+      <rect x="650" y="134" width="200" height="90" rx="4" fill="none" stroke="#999"/>
+      <text x="750" y="158" fill="currentColor" font-size="11.5" text-anchor="middle" font-weight="700">Converged Node ×N</text>
+      <text x="750" y="176" fill="#888" font-size="10" text-anchor="middle">Compute + Ceph OSD</text>
+      <text x="750" y="192" fill="#888" font-size="10" text-anchor="middle">(단일 노드에 통합 배치)</text>
+      <text x="750" y="210" fill="#888" font-size="10" text-anchor="middle">소규모/엣지 환경 최적화</text>
+
+      <rect x="700" y="248" width="100" height="40" rx="4" fill="none" stroke="#999"/>
+      <text x="750" y="272" fill="currentColor" font-size="10.5" text-anchor="middle" font-weight="700">Controller</text>
+      <line x1="750" y1="224" x2="750" y2="248" stroke="#999"/>
+
+      <rect x="70" y="310" width="840" height="70" rx="4" fill="none" stroke="#999" stroke-dasharray="4 3"/>
+      <text x="490" y="334" fill="currentColor" font-size="12" text-anchor="middle" font-weight="700">Masakari + Pacemaker · Instance / Host HA</text>
+      <text x="490" y="354" fill="#888" font-size="10.5" text-anchor="middle">인스턴스 장애 자동 재기동 · 호스트 장애 시 evacuate</text>
+      <text x="490" y="370" fill="#888" font-size="10.5" text-anchor="middle">HAProxy 기반 API 로드밸런싱 (Controller ↔ 외부망)</text>
+
+      <line x1="230" y1="268" x2="230" y2="310" stroke="#999"/>
+      <line x1="750" y1="288" x2="750" y2="310" stroke="#999"/>
+
+      <rect x="70" y="396" width="840" height="20" rx="3" fill="none" stroke="#999"/>
+      <text x="490" y="410" fill="#888" font-size="10" text-anchor="middle">br-mgmt / br-vxlan / br-ext — 외부/관리/터널 네트워크</text>
+    </svg>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <caption style="text-align:left;font-size:13px;color:var(--muted);margin-bottom:8px;caption-side:top;">Standard vs HCI 비교</caption>
+      <thead><tr><th>구분</th><th>Standard</th><th>HCI</th></tr></thead>
+      <tbody>
+        <tr><td>노드 구성</td><td>Controller/Compute/Storage 분리</td><td>Compute+Storage 단일 노드 통합</td></tr>
+        <tr><td>적합 규모</td><td>중대형, 확장성 우선</td><td>소규모, 엣지/PoC</td></tr>
+        <tr><td>스토리지</td><td>전용 Ceph 노드 클러스터</td><td>Compute 노드 내 Ceph OSD</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <caption style="text-align:left;font-size:13px;color:var(--muted);margin-bottom:8px;caption-side:top;">Masakari Instance HA 실증 환경 (Kolla-Ansible, Rocky 9)</caption>
+      <thead><tr><th>노드</th><th>역할</th><th>주요 컴포넌트</th></tr></thead>
+      <tbody>
+        <tr><td>deploy</td><td>배포 노드</td><td>kolla-ansible, venv</td></tr>
+        <tr><td>control</td><td>컨트롤러</td><td>masakari_api/engine/hostmonitor, ProxySQL</td></tr>
+        <tr><td>comp-01</td><td>컴퓨트</td><td>nova_compute, masakari_instancemonitor</td></tr>
+        <tr><td>comp-02</td><td>컴퓨트 (증설)</td><td>동일 구성 — evacuate 대상</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    Built with OpenStack, Ansible, and a lot of troubleshooting logs.
+  </footer>
+
+</div>
+</body>
+</html>
