@@ -171,25 +171,35 @@
   </div>
 
   <h2 style="margin-top:56px;">Version Migration</h2>
-  <p>OpenStack Antelope(2023.1) → Caracal(2024.1) 업그레이드 시험을 통해 실제 변경사항을 검증했습니다.</p>
+  <p>OpenStack 릴리스를 지속적으로 추적하며 Antelope → Caracal → Epoxy 순으로 업그레이드 검증을 진행해왔습니다.</p>
 
   <div class="table-scroll">
     <table>
-      <caption>Antelope → Caracal 주요 컴포넌트 버전</caption>
-      <thead><tr><th>구분</th><th>Antelope</th><th>Caracal</th></tr></thead>
+      <caption>OpenStack 릴리스별 주요 버전</caption>
+      <thead><tr><th>구분</th><th>Antelope</th><th>Caracal</th><th>Epoxy (2026)</th></tr></thead>
       <tbody>
-        <tr><td>OS Kernel</td><td>5.15.0-87</td><td>5.15.0-131</td></tr>
-        <tr><td>MariaDB</td><td>10.11.2</td><td>10.11.6</td></tr>
-        <tr><td>RabbitMQ</td><td>3.11.10</td><td>3.13.7</td></tr>
+        <tr><td>OS</td><td>Ubuntu 22.04, Kernel 5.15.0-87</td><td>Ubuntu 22.04, Kernel 5.15.0-131</td><td>Ubuntu 24.04.4 LTS (noble)</td></tr>
+        <tr><td>MariaDB</td><td>10.11.2</td><td>10.11.6</td><td>-</td></tr>
+        <tr><td>RabbitMQ</td><td>3.11.10</td><td>3.13.7</td><td>-</td></tr>
+        <tr><td>OSA Release</td><td>-</td><td>-</td><td>31.1.2</td></tr>
       </tbody>
     </table>
   </div>
   <p style="font-size:14.5px;color:var(--muted);">
-    업그레이드 중 Apache MPM 모듈 미로드, nova-scheduler의 AvailabilityZoneFilter 누락 등의 이슈를 확인하고 조치했습니다.
+    Caracal 업그레이드 중에는 Apache MPM 모듈 미로드, nova-scheduler의 AvailabilityZoneFilter 누락 등을 조치했고,
+    Epoxy 전환 시에는 APT/PyPI/Git 오프라인 저장소 구조를 릴리스별로 분리(<code>/opt/osa/pkg/repo/&lt;release&gt;/</code>)해
+    Caracal·Epoxy 환경을 동시에 운영할 수 있도록 설계했습니다.
+  </p>
+
+  <h2 style="margin-top:56px;">Object Storage 연동</h2>
+  <p>
+    외부 Object Storage 어플라이언스(DELL ECS)와 프라이빗 클라우드 가상화 자원을 연동해,
+    VM 환경에서 S3 버킷 기능을 사용할 수 있도록 설계했습니다. VM과 스토리지는 Provider Network로 연결하고,
+    관리 트래픽은 별도 구간을 거쳐 분리했습니다.
   </p>
 
   <h2 style="margin-top:56px;">Reference Hardware</h2>
-  <p>프라이빗 클라우드 구축 시 사용한 하드웨어 계층별 구성 예시입니다.</p>
+  <p>프라이빗 클라우드 구축에 사용해온 하드웨어 계층별 구성 예시입니다.</p>
 
   <div class="table-scroll">
     <table>
@@ -197,16 +207,16 @@
       <thead><tr><th>계층</th><th>모델</th><th>주요 스펙</th></tr></thead>
       <tbody>
         <tr><td>방화벽</td><td>Fortinet FG-200F</td><td>Throughput 27Gbps, 동시세션 300만, Dual Power</td></tr>
-        <tr><td>ToR 스위치</td><td>HPE Aruba CX 8100</td><td>1.76Tbps, 48x10G SFP+ / 4x40·100G QSFP28</td></tr>
-        <tr><td>MGMT 스위치</td><td>HPE Aruba CX 6000</td><td>104Gbps, 24G 4SFP</td></tr>
+        <tr><td>ToR 스위치</td><td>HPE Aruba CX 8100 / Juniper QFX5110</td><td>1.76Tbps급, LACP 2+3 Bonding 지원</td></tr>
         <tr><td>SAN 스위치</td><td>Brocade G720</td><td>32Gbps, 최대 64포트</td></tr>
-        <tr><td>배포/컨트롤러 서버</td><td>Dell PowerEdge R660XS / R760</td><td>Xeon Silver/Gold, 25GbE SFP28, HBA FC32</td></tr>
-        <tr><td>스토리지</td><td>Unity XT Hybrid 380</td><td>10K SAS, 10GbE 옵션 포트</td></tr>
+        <tr><td>Controller/Compute 서버</td><td>Dell PowerEdge R660XS/R760, KTNF Coreridge KR570S3</td><td>Xeon Silver/Gold, 25GbE SFP28</td></tr>
+        <tr><td>스토리지</td><td>Unity XT Hybrid 380, NetApp (iSCSI Multipath)</td><td>10K SAS, NAS 공유파일시스템(Manila) 연동</td></tr>
       </tbody>
     </table>
   </div>
   <p style="font-size:14.5px;color:var(--muted);">
-    방화벽/ToR·MGMT 스위치 이중화, Controller 3중화 HA, SAN/NAS 스토리지 이중화로 단일 장애점을 제거하는 구성입니다.
+    방화벽/스위치 이중화, Controller 3중화 HA, SAN/NAS 스토리지 이중화로 단일 장애점을 제거하고,
+    Horizon 100여 개 테스트 케이스 기반 기능 검증을 거쳐 상품화했습니다.
   </p>
 
 
