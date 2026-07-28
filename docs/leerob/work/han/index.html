@@ -62,6 +62,9 @@
   ul.essays{list-style:none;margin:0 0 16px;padding:0;}
   ul.essays li{margin-bottom:8px;}
 
+  .field-label{font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent);margin:28px 0 8px;}
+  .field-label:first-of-type{margin-top:24px;}
+
   .entry{margin-bottom:32px;}
   .entry:last-child{margin-bottom:0;}
   .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
@@ -109,15 +112,18 @@
 
   <h2>한*** · 빅데이터 결합안심 시스템</h2>
   <p><span class="badge badge-build">설계구축</span> <span class="muted">공공기관</span></p>
+
+  <p class="field-label">배경</p>
   <p>
     대용량 정형·비정형 데이터를 안전하게 결합·분석할 격리된 프라이빗 클라우드 인프라가 필요했습니다.
   </p>
+
+  <p class="field-label">수행 내용</p>
   <p>
     <a href="../../architecture/">OpenStack 프라이빗 클라우드</a>를 구축하고 Glance/Cinder 스토리지를 구성했으며,
     배포 자동화 도구를 적용했습니다. 운영 과정에서는 스토리지 드라이버 호환성, 이미지 저장 권한,
     네트워크 접근 제한 등 실제 배포 환경에서만 드러나는 이슈들을 하나씩 해결했습니다.
   </p>
-
   <div class="table-scroll">
     <table>
       <caption>주요 이슈 대응</caption>
@@ -130,7 +136,8 @@
     </table>
   </div>
 
-  <p>이 과정을 거쳐 배포 이슈 및 운영 조치 대응 체계를 확립해 안정적인 서비스 운영을 지원했습니다.</p>
+  <p class="field-label">성과</p>
+  <p>배포 이슈 및 운영 조치 대응 체계를 확립해 안정적인 서비스 운영을 지원했습니다.</p>
 
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>

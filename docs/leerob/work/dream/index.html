@@ -62,6 +62,9 @@
   ul.essays{list-style:none;margin:0 0 16px;padding:0;}
   ul.essays li{margin-bottom:8px;}
 
+  .field-label{font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent);margin:28px 0 8px;}
+  .field-label:first-of-type{margin-top:24px;}
+
   .entry{margin-bottom:32px;}
   .entry:last-child{margin-bottom:0;}
   .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
@@ -109,10 +112,13 @@
 
   <h2>드***</h2>
   <p><span class="badge badge-build">설계구축</span> <span class="muted">민간기업</span></p>
+
+  <p class="field-label">배경</p>
   <p>
     운영 중인 OpenStack 인프라에서 특정 Compute 노드로 인스턴스가 배치되지 않는 현상이 발생했습니다.
   </p>
 
+  <p class="field-label">수행 내용</p>
   <div class="table-scroll">
     <table>
       <caption>인스턴스 배치 편중 이슈</caption>
@@ -125,11 +131,13 @@
       </tbody>
     </table>
   </div>
-
   <p>
     이와 함께 MariaDB 메모리·쿼리 사용량을 분석해 성능 조회 체계를 구성했습니다.
     자세한 스택은 <a href="../../skills/">보유 기술</a>에서 확인할 수 있습니다.
   </p>
+
+  <p class="field-label">성과</p>
+  <p>Controller 데몬 재기동만으로 서비스 영향 없이 인스턴스 분산 배치를 정상화했습니다.</p>
 
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>
