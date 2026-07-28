@@ -211,30 +211,6 @@
     Caracal·Epoxy 환경을 동시에 운영할 수 있도록 설계했습니다.
   </p>
 
-  <h2 style="margin-top:56px;">성능 튜닝 표준화</h2>
-  <p>
-    역할(Controller/Compute/Network/Storage)별로 튜닝 항목을 표준화하고,
-    적용 전/후 상태를 자동으로 비교하는 벤치마크 파이프라인(preflight → apply → benchmark)을 구축했습니다.
-  </p>
-
-  <div class="table-scroll">
-    <table>
-      <caption>역할별 성능 튜닝 항목</caption>
-      <thead><tr><th>역할</th><th>튜닝 영역</th><th>주요 항목</th></tr></thead>
-      <tbody>
-        <tr><td>Controller</td><td>DB / 메시징</td><td>Galera(MariaDB) 커넥션 풀, RabbitMQ 큐 정책, Memcached</td></tr>
-        <tr><td>Compute</td><td>하이퍼바이저</td><td>CPU/NUMA 배치, 디스크(NVMe/SSD/HDD) I/O 스케줄러</td></tr>
-        <tr><td>Network</td><td>커널</td><td>conntrack 테이블 크기, 백로그 큐, OVS/OVN 플로우</td></tr>
-        <tr><td>Storage</td><td>Ceph</td><td>OSD 배치, PG 수 산정</td></tr>
-        <tr><td>공통</td><td>모니터링</td><td>sysstat, journald, kdump 기반 튜닝 전/후 비교</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:14.5px;color:var(--muted);">
-    온라인 레포지토리와 완전 폐쇄망(.deb 동봉) 배포 패키지를 모두 지원해, 인터넷이 차단된 환경에서도
-    동일한 튜닝 표준을 적용할 수 있도록 만들었습니다.
-  </p>
-
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>
 </div>
