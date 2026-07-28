@@ -94,13 +94,24 @@
   <p class="muted">PoC · 2026</p>
   <p>
     신규 도입을 검토 중인 고객사를 위해 실제 운영 시나리오 기반의 검증이 필요했습니다.
+    Horizon 커스터마이징, 컨트롤/컴퓨트 네트워크 구성 후 Cinder Snapshot·Backup 시나리오를 검증했습니다.
   </p>
-  <p>
-    Horizon 커스터마이징, 컨트롤/컴퓨트 네트워크 구성 후 Cinder Snapshot·Backup 시나리오를 테스트했습니다.
-  </p>
-  <p>
-    핵심 기능에 대한 PoC 검증을 완료해 도입 판단 근거를 제공했습니다.
-  </p>
+
+  <div class="table-scroll">
+    <table>
+      <caption>Cinder Snapshot vs Backup</caption>
+      <thead><tr><th>구분</th><th>Snapshot</th><th>Backup</th></tr></thead>
+      <tbody>
+        <tr><td>저장 위치</td><td>동일 스토리지 백엔드</td><td>외부 스토리지 (Swift/S3/NFS)</td></tr>
+        <tr><td>방식</td><td>Copy-on-Write (포인터)</td><td>전체 데이터 복사(+증분)</td></tr>
+        <tr><td>속도</td><td>빠름 (즉시)</td><td>느림 (데이터 전송)</td></tr>
+        <tr><td>원본 삭제 시</td><td>스냅샷도 함께 삭제</td><td>독립적으로 유지</td></tr>
+        <tr><td>적합 시나리오</td><td>빠른 롤백, 단기 보관, 템플릿 복제</td><td>재해복구(DR), 장기 보관, 사이트 이관</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>핵심 기능에 대한 PoC 검증을 완료해 도입 판단 근거를 제공했습니다.</p>
 
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>
