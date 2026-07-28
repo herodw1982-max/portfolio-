@@ -32,6 +32,19 @@
       --accent-2-bg:rgba(255,184,77,0.12);
     }
   }
+  /* brittanychiang-style dark theme, used on all detail pages */
+  [data-theme="chiang"]{
+    --bg:#0a192f;
+    --fg:#e6f1ff;
+    --muted:#8892b0;
+    --border:#233554;
+    --link:#e6f1ff;
+    --accent:#64ffda;
+    --accent-bg:rgba(100,255,218,0.10);
+    --accent-2:#f5a623;
+    --accent-2-bg:rgba(245,166,35,0.12);
+    --max:760px;
+  }
   *{box-sizing:border-box;}
   html{-webkit-text-size-adjust:100%;}
   body{
@@ -44,6 +57,7 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:var(--max);margin:0 auto;padding:64px 24px 96px;}
+  .wrap-arch{max-width:920px;}
   a{color:var(--link);text-decoration:underline;text-decoration-color:var(--muted);text-decoration-thickness:1.5px;text-underline-offset:3px;}
   a:hover{text-decoration-color:currentColor;text-decoration-thickness:2px;}
   h1{font-size:22px;font-weight:700;margin:0 0 4px;}
@@ -62,15 +76,32 @@
   ul.essays{list-style:none;margin:0 0 16px;padding:0;}
   ul.essays li{margin-bottom:8px;}
 
+  ul.ticks{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:7px;}
+  ul.ticks li{position:relative;padding-left:18px;font-size:14.5px;color:var(--fg);}
+  ul.ticks li::before{content:"▹";position:absolute;left:0;color:var(--accent);font-size:12px;}
+
   .field-label{font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent);margin:28px 0 8px;}
   .field-label:first-of-type{margin-top:24px;}
 
   .entry{margin-bottom:32px;}
   .entry:last-child{margin-bottom:0;}
-  .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
-  .entry-head strong{font-size:16px;font-weight:600;}
-  .entry-head span{color:var(--muted);font-size:14.5px;white-space:nowrap;}
+  .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+  .entry-head strong{font-size:16px;font-weight:700;color:var(--fg);}
+  .entry-head span{color:var(--accent);font-size:13px;font-weight:600;white-space:nowrap;}
   .entry p{color:var(--muted);font-size:15.5px;margin-bottom:6px;}
+
+  .card{border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:20px;transition:border-color .2s ease, transform .2s ease;}
+  a.card{display:block;text-decoration:none;}
+  a.card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .card:last-child{margin-bottom:0;}
+  .card .badge{margin-bottom:10px;}
+  .card h3{font-size:16px;font-weight:700;margin:0 0 6px;color:var(--fg);}
+  .card p.desc{margin:0;font-size:14px;color:var(--muted);}
+  .card-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:16px;}
+
+  .toolbox{display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;margin-bottom:8px;}
+  @media (max-width:520px){ .toolbox{grid-template-columns:1fr;} }
+  .toolbox h4{font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:700;}
 
   .badge{
     display:inline-block;font-size:11.5px;font-weight:600;
@@ -85,12 +116,12 @@
   td{padding:10px 10px 10px 0;border-bottom:1px solid var(--border);color:var(--fg);vertical-align:top;}
   tr:last-child td{border-bottom:none;}
   tbody tr:hover td{background:var(--accent-bg);}
-  .table-scroll{overflow-x:auto;margin-bottom:32px;}
+  .table-scroll{overflow-x:auto;margin-bottom:32px;border:1px solid var(--border);border-radius:8px;padding:6px 16px;}
   .table-scroll:last-child{margin-bottom:0;}
-  caption{text-align:left;font-size:13px;color:var(--muted);margin-bottom:8px;caption-side:top;}
+  caption{text-align:left;font-size:12.5px;color:var(--muted);margin-bottom:6px;padding-top:8px;text-transform:uppercase;letter-spacing:0.04em;caption-side:top;}
 
-  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin:8px 0 32px;background:var(--accent-bg);}
-  .diagram svg{display:block;min-width:600px;}
+  .diagram{border:1px solid var(--border);border-radius:8px;overflow-x:auto;margin:8px 0 32px;background:var(--bg);}
+  .diagram svg{display:block;min-width:860px;}
 
   .next-link{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);}
   .next-link .muted{display:block;font-size:13px;margin-bottom:4px;}
@@ -115,12 +146,13 @@
     <h1>OpenStack 프라이빗 클라우드 엔지니어</h1>
     <p>
       18년차 인프라 엔지니어이고, IT 기술등급은 특급입니다.
-      <a href="architecture/">OpenStack 기반 프라이빗 클라우드</a>를 설계·구축·운영하며
+      Standard/HCI 두 토폴로지와 Antelope부터 Epoxy까지
+      <a href="architecture/">여러 버전을 지원하는 OpenStack 기반 프라이빗 클라우드 아키텍처</a>를 설계·구축·운영하며
       공공기관부터 금융, 유통, 통신까지 여러 산업의 클라우드 전환을 이끌어왔습니다.
     </p>
     <p>
-      요즘은 <a href="architecture/">OpenStack 버전 업그레이드</a>와
-      <a href="experience/">배포 자동화·Ceph 표준화</a> 같은 고도화 작업에 집중하고 있고,
+      요즘은 <a href="experience/">배포 표준화 및 자동화</a>와
+      <a href="experience/">Ceph 기반 스토리지 표준화</a> 같은 고도화 작업에 집중하고 있고,
       장애가 사람보다 먼저 잡히는 <a href="experience/">자동 복구 체계</a> 만드는 걸 좋아합니다.
     </p>
     <p>제가 진행한 프로젝트 몇 가지는 다음과 같습니다.</p>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Work · OpenStack Private Cloud Engineer</title>
-<meta name="theme-color" content="#ffffff">
+<meta name="theme-color" content="#0a192f">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E☁️%3C/text%3E%3C/svg%3E">
 <style>
   :root{
@@ -32,6 +32,19 @@
       --accent-2-bg:rgba(255,184,77,0.12);
     }
   }
+  /* brittanychiang-style dark theme, used on all detail pages */
+  [data-theme="chiang"]{
+    --bg:#0a192f;
+    --fg:#e6f1ff;
+    --muted:#8892b0;
+    --border:#233554;
+    --link:#e6f1ff;
+    --accent:#64ffda;
+    --accent-bg:rgba(100,255,218,0.10);
+    --accent-2:#f5a623;
+    --accent-2-bg:rgba(245,166,35,0.12);
+    --max:760px;
+  }
   *{box-sizing:border-box;}
   html{-webkit-text-size-adjust:100%;}
   body{
@@ -44,6 +57,7 @@
     -webkit-font-smoothing:antialiased;
   }
   .wrap{max-width:var(--max);margin:0 auto;padding:64px 24px 96px;}
+  .wrap-arch{max-width:920px;}
   a{color:var(--link);text-decoration:underline;text-decoration-color:var(--muted);text-decoration-thickness:1.5px;text-underline-offset:3px;}
   a:hover{text-decoration-color:currentColor;text-decoration-thickness:2px;}
   h1{font-size:22px;font-weight:700;margin:0 0 4px;}
@@ -62,15 +76,32 @@
   ul.essays{list-style:none;margin:0 0 16px;padding:0;}
   ul.essays li{margin-bottom:8px;}
 
+  ul.ticks{list-style:none;margin:0 0 16px;padding:0;display:flex;flex-direction:column;gap:7px;}
+  ul.ticks li{position:relative;padding-left:18px;font-size:14.5px;color:var(--fg);}
+  ul.ticks li::before{content:"▹";position:absolute;left:0;color:var(--accent);font-size:12px;}
+
   .field-label{font-size:12px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:var(--accent);margin:28px 0 8px;}
   .field-label:first-of-type{margin-top:24px;}
 
   .entry{margin-bottom:32px;}
   .entry:last-child{margin-bottom:0;}
-  .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
-  .entry-head strong{font-size:16px;font-weight:600;}
-  .entry-head span{color:var(--muted);font-size:14.5px;white-space:nowrap;}
+  .entry-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+  .entry-head strong{font-size:16px;font-weight:700;color:var(--fg);}
+  .entry-head span{color:var(--accent);font-size:13px;font-weight:600;white-space:nowrap;}
   .entry p{color:var(--muted);font-size:15.5px;margin-bottom:6px;}
+
+  .card{border:1px solid var(--border);border-radius:8px;padding:22px 24px;margin-bottom:20px;transition:border-color .2s ease, transform .2s ease;}
+  a.card{display:block;text-decoration:none;}
+  a.card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  .card:last-child{margin-bottom:0;}
+  .card .badge{margin-bottom:10px;}
+  .card h3{font-size:16px;font-weight:700;margin:0 0 6px;color:var(--fg);}
+  .card p.desc{margin:0;font-size:14px;color:var(--muted);}
+  .card-grid{display:flex;flex-direction:column;gap:16px;margin-bottom:16px;}
+
+  .toolbox{display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;margin-bottom:8px;}
+  @media (max-width:520px){ .toolbox{grid-template-columns:1fr;} }
+  .toolbox h4{font-size:11.5px;letter-spacing:0.06em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;font-weight:700;}
 
   .badge{
     display:inline-block;font-size:11.5px;font-weight:600;
@@ -85,12 +116,12 @@
   td{padding:10px 10px 10px 0;border-bottom:1px solid var(--border);color:var(--fg);vertical-align:top;}
   tr:last-child td{border-bottom:none;}
   tbody tr:hover td{background:var(--accent-bg);}
-  .table-scroll{overflow-x:auto;margin-bottom:32px;}
+  .table-scroll{overflow-x:auto;margin-bottom:32px;border:1px solid var(--border);border-radius:8px;padding:6px 16px;}
   .table-scroll:last-child{margin-bottom:0;}
-  caption{text-align:left;font-size:13px;color:var(--muted);margin-bottom:8px;caption-side:top;}
+  caption{text-align:left;font-size:12.5px;color:var(--muted);margin-bottom:6px;padding-top:8px;text-transform:uppercase;letter-spacing:0.04em;caption-side:top;}
 
-  .diagram{border:1px solid var(--border);border-radius:6px;overflow-x:auto;margin:8px 0 32px;background:var(--accent-bg);}
-  .diagram svg{display:block;min-width:600px;}
+  .diagram{border:1px solid var(--border);border-radius:8px;overflow-x:auto;margin:8px 0 32px;background:var(--bg);}
+  .diagram svg{display:block;min-width:860px;}
 
   .next-link{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);}
   .next-link .muted{display:block;font-size:13px;margin-bottom:4px;}
@@ -100,7 +131,7 @@
   footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);color:var(--muted);font-size:14px;}
 </style>
 </head>
-<body>
+<body data-theme="chiang">
 <div class="wrap">
   <nav class="top">
     <a href="../">Home</a>
@@ -112,13 +143,33 @@
 
   <h2>Work</h2>
   <p class="muted">직접 구축하고 운영한 고객사 프로젝트입니다.</p>
-  <ul class="essays">
-    <li><span class="badge badge-build">설계구축</span> <a href="im/">아이*** · IaaS 플랫폼 구축</a></li>
-    <li><span class="badge badge-build">설계구축</span> <a href="han/">한*** · 빅데이터 결합안심 시스템</a></li>
-    <li><span class="badge badge-build">설계구축</span> <a href="ktr/">K*** (한***)</a></li>
-    <li><span class="badge badge-build">설계구축</span> <a href="dream/">드***</a></li>
-    <li><span class="badge badge-poc">PoC</span> <a href="shinhan/">신*** OpenStack PoC</a></li>
-  </ul>
+  <div class="card-grid">
+    <a class="card" href="im/">
+      <span class="badge badge-build">설계구축</span>
+      <h3>아이*** · IaaS 플랫폼 구축</h3>
+      <p class="desc">PL로서 아키텍처 설계부터 하드웨어 산정, 구축까지 전 과정을 리드한 현재 진행 중인 프로젝트</p>
+    </a>
+    <a class="card" href="han/">
+      <span class="badge badge-build">설계구축</span>
+      <h3>한*** · 빅데이터 결합안심 시스템</h3>
+      <p class="desc">격리된 프라이빗 클라우드 구축 및 스토리지 드라이버·권한·네트워크 이슈 대응</p>
+    </a>
+    <a class="card" href="ktr/">
+      <span class="badge badge-build">설계구축</span>
+      <h3>K*** (한***)</h3>
+      <p class="desc">시험·연구 데이터 처리 클러스터의 표준화된 배포 자동화</p>
+    </a>
+    <a class="card" href="dream/">
+      <span class="badge badge-build">설계구축</span>
+      <h3>드***</h3>
+      <p class="desc">인스턴스 배치 편중 이슈 진단 및 Nova 스케줄러 파라미터 조치</p>
+    </a>
+    <a class="card" href="shinhan/">
+      <span class="badge badge-poc">PoC</span>
+      <h3>신*** OpenStack PoC</h3>
+      <p class="desc">금융권 도입 검토를 위한 아키텍처 설계 및 단기 기술 검증</p>
+    </a>
+  </div>
 
 
   <div class="next-link">
