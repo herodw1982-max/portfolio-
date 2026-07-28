@@ -49,8 +49,10 @@
   nav.top a:hover{color:var(--fg);text-decoration:underline;}
   nav.top a.current{color:var(--fg);font-weight:600;}
 
-  ul.plain{list-style:none;margin:0;padding:0;}
+  ul.plain{list-style:none;margin:0 0 16px;padding:0;}
   ul.plain li{margin-bottom:6px;color:var(--fg);}
+  ul.essays{list-style:none;margin:0 0 16px;padding:0;}
+  ul.essays li{margin-bottom:8px;}
 
   .entry{margin-bottom:32px;}
   .entry:last-child{margin-bottom:0;}
@@ -89,23 +91,13 @@
   </nav>
 
   <h2>Work</h2>
-
-  <div class="entry">
-    <div class="entry-head"><strong>한*** · 빅데이터 결합안심 시스템</strong><span class="muted">공공기관</span></div>
-    <p>대용량 데이터를 안전하게 결합·분석할 격리된 프라이빗 클라우드 인프라가 필요했습니다. OpenStack 클라우드를 구축하고 Glance/Cinder를 구성해 배포 이슈와 운영 조치 대응 체계를 확립했습니다.</p>
-  </div>
-  <div class="entry">
-    <div class="entry-head"><strong>K*** (한***)</strong><span class="muted">공공기관</span></div>
-    <p>시험·연구 데이터 처리 클러스터를 표준화된 방식으로 신속히 배포해야 했습니다. netplan 네트워크 구성과 전용 배포 스크립트로 과정을 자동화했습니다.</p>
-  </div>
-  <div class="entry">
-    <div class="entry-head"><strong>드***</strong><span class="muted">민간기업</span></div>
-    <p>DB 메모리 사용량 증가와 쿼리 성능 저하 이슈가 있었습니다. MariaDB 메모리·쿼리 사용량을 분석해 성능 조회 체계를 구성했습니다.</p>
-  </div>
-  <div class="entry">
-    <div class="entry-head"><strong>세*** PoC 2026</strong><span class="muted">PoC</span></div>
-    <p>신규 도입 검토를 위한 운영 시나리오 기반 검증이 필요했습니다. Horizon 커스터마이징과 네트워크 구성 후 Cinder Snapshot·Backup을 테스트해 도입 판단 근거를 제공했습니다.</p>
-  </div>
+  <p class="muted">직접 구축하고 운영한 고객사 프로젝트입니다.</p>
+  <ul class="essays">
+    <li><a href="han/">한*** · 빅데이터 결합안심 시스템</a> <span class="muted">— 공공기관</span></li>
+    <li><a href="ktr/">K*** (한***)</a> <span class="muted">— 공공기관</span></li>
+    <li><a href="dream/">드***</a> <span class="muted">— 민간기업</span></li>
+    <li><a href="sebang/">세*** PoC 2026</a> <span class="muted">— PoC</span></li>
+  </ul>
 
 
   <div class="next-link">
