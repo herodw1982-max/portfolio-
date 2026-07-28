@@ -142,12 +142,12 @@
   </nav>
 
   <h2>Architecture</h2>
-  <p>NPD Maker는 단일 배포 도구로 Standard(분산형)와 HCI(초융합형) 두 가지 토폴로지를 지원합니다.</p>
+  <p>직접 개발한 배포 자동화 솔루션은 단일 도구로 Standard(분산형)와 HCI(초융합형) 두 가지 토폴로지를 지원합니다.</p>
 
   <div class="diagram">
     <svg viewBox="0 0 980 420" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,sans-serif">
       <rect x="390" y="10" width="200" height="46" rx="4" fill="var(--accent-bg)" stroke="var(--accent)" stroke-width="1.5"/>
-      <text x="490" y="38" fill="currentColor" font-size="13" text-anchor="middle" font-weight="700">NPD Deployer (Director)</text>
+      <text x="490" y="38" fill="currentColor" font-size="13" text-anchor="middle" font-weight="700">배포 자동화 서버 (Director)</text>
 
       <line x1="490" y1="56" x2="490" y2="80" stroke="var(--accent)" stroke-width="1"/>
       <line x1="230" y1="80" x2="750" y2="80" stroke="var(--accent)" stroke-width="1"/>
@@ -213,7 +213,7 @@
       <caption>Masakari Instance HA 실증 환경 (Kolla-Ansible, Rocky 9)</caption>
       <thead><tr><th>노드</th><th>역할</th><th>주요 컴포넌트</th></tr></thead>
       <tbody>
-        <tr><td>deploy</td><td>배포 노드</td><td>kolla-ansible, venv</td></tr>
+        <tr><td>배포</td><td>배포 노드</td><td>kolla-ansible, venv</td></tr>
         <tr><td>control</td><td>컨트롤러</td><td>masakari_api/engine/hostmonitor, ProxySQL</td></tr>
         <tr><td>comp-01</td><td>컴퓨트</td><td>nova_compute, masakari_instancemonitor</td></tr>
         <tr><td>comp-02</td><td>컴퓨트 (증설)</td><td>동일 구성 — evacuate 대상</td></tr>
@@ -222,7 +222,7 @@
   </div>
 
   <h2 style="margin-top:56px;">Version Migration</h2>
-  <p>OpenStack 릴리스를 지속적으로 추적하며 Antelope → Caracal → Epoxy 순으로 업그레이드 검증을 진행해왔습니다.</p>
+  <p>OpenStack 릴리스를 지속적으로 추적하며 Antelope → Caracal → Epoxy 순으로 버전별 아키텍처를 설계·구축하고, 버전별 오프라인 패키지 저장소(repo)를 구성해 폐쇄망 환경에서도 동일하게 배포할 수 있도록 만들었습니다.</p>
 
   <div class="table-scroll">
     <table>
