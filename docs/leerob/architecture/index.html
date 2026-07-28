@@ -208,50 +208,29 @@
     Caracal·Epoxy 환경을 동시에 운영할 수 있도록 설계했습니다.
   </p>
 
-  <h2 style="margin-top:56px;">Object Storage 연동</h2>
+  <h2 style="margin-top:56px;">성능 튜닝 표준화</h2>
   <p>
-    외부 Object Storage 어플라이언스(DELL ECS)와 프라이빗 클라우드 가상화 자원을 연동해,
-    VM 환경에서 S3 버킷 기능을 사용할 수 있도록 설계했습니다. VM과 스토리지는 Provider Network로 연결하고,
-    관리 트래픽은 별도 구간을 거쳐 분리했습니다.
+    역할(Controller/Compute/Network/Storage)별로 튜닝 항목을 표준화하고,
+    적용 전/후 상태를 자동으로 비교하는 벤치마크 파이프라인(preflight → apply → benchmark)을 구축했습니다.
   </p>
-
-  <h2 style="margin-top:56px;">Reference Hardware</h2>
-  <p>프라이빗 클라우드 구축에 사용해온 하드웨어 계층별 구성 예시입니다.</p>
 
   <div class="table-scroll">
     <table>
-      <caption>인프라 계층별 하드웨어 사양 (예시)</caption>
-      <thead><tr><th>계층</th><th>모델</th><th>주요 스펙</th></tr></thead>
+      <caption>역할별 성능 튜닝 항목</caption>
+      <thead><tr><th>역할</th><th>튜닝 영역</th><th>주요 항목</th></tr></thead>
       <tbody>
-        <tr><td>방화벽</td><td>Fortinet FG-200F</td><td>Throughput 27Gbps, 동시세션 300만, Dual Power</td></tr>
-        <tr><td>ToR 스위치</td><td>HPE Aruba CX 8100 / Juniper QFX5110</td><td>1.76Tbps급, LACP 2+3 Bonding 지원</td></tr>
-        <tr><td>SAN 스위치</td><td>Brocade G720</td><td>32Gbps, 최대 64포트</td></tr>
-        <tr><td>Controller/Compute 서버</td><td>Dell PowerEdge R660XS/R760, KTNF Coreridge KR570S3</td><td>Xeon Silver/Gold, 25GbE SFP28</td></tr>
-        <tr><td>스토리지</td><td>Unity XT Hybrid 380, NetApp (iSCSI Multipath)</td><td>10K SAS, NAS 공유파일시스템(Manila) 연동</td></tr>
+        <tr><td>Controller</td><td>DB / 메시징</td><td>Galera(MariaDB) 커넥션 풀, RabbitMQ 큐 정책, Memcached</td></tr>
+        <tr><td>Compute</td><td>하이퍼바이저</td><td>CPU/NUMA 배치, 디스크(NVMe/SSD/HDD) I/O 스케줄러</td></tr>
+        <tr><td>Network</td><td>커널</td><td>conntrack 테이블 크기, 백로그 큐, OVS/OVN 플로우</td></tr>
+        <tr><td>Storage</td><td>Ceph</td><td>OSD 배치, PG 수 산정</td></tr>
+        <tr><td>공통</td><td>모니터링</td><td>sysstat, journald, kdump 기반 튜닝 전/후 비교</td></tr>
       </tbody>
     </table>
   </div>
   <p style="font-size:14.5px;color:var(--muted);">
-    방화벽/스위치 이중화, Controller 3중화 HA, SAN/NAS 스토리지 이중화로 단일 장애점을 제거하고,
-    Horizon 100여 개 테스트 케이스 기반 기능 검증을 거쳐 상품화했습니다.
+    온라인 레포지토리와 완전 폐쇄망(.deb 동봉) 배포 패키지를 모두 지원해, 인터넷이 차단된 환경에서도
+    동일한 튜닝 표준을 적용할 수 있도록 만들었습니다.
   </p>
-
-  <h2 style="margin-top:56px;">Storage: Snapshot vs Backup</h2>
-  <p>Cinder 볼륨 보호 전략을 세울 때 기준으로 삼는 두 방식의 차이입니다.</p>
-
-  <div class="table-scroll">
-    <table>
-      <caption>Cinder Snapshot vs Backup</caption>
-      <thead><tr><th>구분</th><th>Snapshot</th><th>Backup</th></tr></thead>
-      <tbody>
-        <tr><td>저장 위치</td><td>동일 스토리지 백엔드</td><td>외부 스토리지 (Swift/S3/NFS)</td></tr>
-        <tr><td>방식</td><td>Copy-on-Write (포인터)</td><td>전체 데이터 복사(+증분)</td></tr>
-        <tr><td>속도</td><td>빠름 (즉시)</td><td>느림 (데이터 전송)</td></tr>
-        <tr><td>원본 삭제 시</td><td>스냅샷도 함께 삭제</td><td>독립적으로 유지</td></tr>
-        <tr><td>적합 시나리오</td><td>빠른 롤백, 단기 보관, 템플릿 복제</td><td>재해복구(DR), 장기 보관, 사이트 이관</td></tr>
-      </tbody>
-    </table>
-  </div>
 
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>
