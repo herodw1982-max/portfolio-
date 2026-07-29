@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+<script>(function(){try{var t=localStorage.getItem('theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>드*** · OpenStack Private Cloud Engineer</title>
 <meta name="theme-color" content="#0a192f">
@@ -17,23 +18,24 @@
     --accent-bg:rgba(0,112,243,0.08);
     --accent-2:#f5a623;
     --accent-2-bg:rgba(245,166,35,0.10);
-    --max:640px;
+    --max:760px;
   }
+  /* dark mode follows OS preference until a manual choice is stored */
   @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#111111;
-      --fg:#f2f2f2;
-      --muted:#999999;
-      --border:#2a2a2a;
-      --link:#f2f2f2;
-      --accent:#3291ff;
-      --accent-bg:rgba(50,145,255,0.12);
-      --accent-2:#ffb84d;
-      --accent-2-bg:rgba(255,184,77,0.12);
+    :root:not([data-theme]){
+      --bg:#0a192f;
+      --fg:#e6f1ff;
+      --muted:#8892b0;
+      --border:#233554;
+      --link:#e6f1ff;
+      --accent:#64ffda;
+      --accent-bg:rgba(100,255,218,0.10);
+      --accent-2:#f5a623;
+      --accent-2-bg:rgba(245,166,35,0.12);
     }
   }
-  /* brittanychiang-style dark theme, used on all detail pages */
-  [data-theme="chiang"]{
+  /* explicit theme set by the toggle button in nav.top */
+  :root[data-theme="dark"]{
     --bg:#0a192f;
     --fg:#e6f1ff;
     --muted:#8892b0;
@@ -43,7 +45,17 @@
     --accent-bg:rgba(100,255,218,0.10);
     --accent-2:#f5a623;
     --accent-2-bg:rgba(245,166,35,0.12);
-    --max:760px;
+  }
+  :root[data-theme="light"]{
+    --bg:#ffffff;
+    --fg:#111111;
+    --muted:#666666;
+    --border:#eaeaea;
+    --link:#111111;
+    --accent:#0070f3;
+    --accent-bg:rgba(0,112,243,0.08);
+    --accent-2:#f5a623;
+    --accent-2-bg:rgba(245,166,35,0.10);
   }
   *{box-sizing:border-box;}
   html{-webkit-text-size-adjust:100%;}
@@ -66,10 +78,12 @@
   .muted{color:var(--muted);}
   .intro p{margin-bottom:14px;}
 
-  nav.top{margin-bottom:48px;font-size:15px;display:flex;gap:16px;flex-wrap:wrap;}
+  nav.top{margin-bottom:48px;font-size:15px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
   nav.top a{color:var(--muted);text-decoration:none;}
   nav.top a:hover{color:var(--fg);text-decoration:underline;}
   nav.top a.current{color:var(--fg);font-weight:600;}
+  .theme-toggle{margin-left:auto;background:none;border:1px solid var(--border);border-radius:999px;width:32px;height:32px;font-size:15px;line-height:1;cursor:pointer;color:var(--fg);display:inline-flex;align-items:center;justify-content:center;padding:0;}
+  .theme-toggle:hover{border-color:var(--accent);}
 
   ul.plain{list-style:none;margin:0 0 16px;padding:0;}
   ul.plain li{margin-bottom:6px;color:var(--fg);}
@@ -131,7 +145,7 @@
   footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);color:var(--muted);font-size:14px;}
 </style>
 </head>
-<body data-theme="chiang">
+<body>
 <div class="wrap">
   <nav class="top">
     <a href="../../">Home</a>
@@ -139,7 +153,9 @@
     <a href="../../experience/">Experience</a>
     <a href="../../work/" class="current">Work</a>
     <a href="../../architecture/">Architecture</a>
+    <button id="theme-toggle" class="theme-toggle" aria-label="테마 전환" type="button">🌙</button>
   </nav>
+  <script>(function(){var b=document.getElementById('theme-toggle');function paint(){b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';}paint();b.addEventListener('click',function(){var d=document.documentElement;var n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}paint();});})();</script>
 
   <h2>드***</h2>
   <p><span class="badge badge-build">설계구축</span> <span class="muted">민간기업 · 2023.09 – 2024.09</span></p>
