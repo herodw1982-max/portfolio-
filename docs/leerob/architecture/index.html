@@ -208,9 +208,8 @@
       <line x1="750" y1="224" x2="750" y2="248" stroke="var(--accent)"/>
 
       <rect x="70" y="310" width="840" height="70" rx="4" fill="var(--accent-2-bg)" stroke="var(--accent-2)" stroke-width="1.5" stroke-dasharray="4 3"/>
-      <text x="490" y="334" fill="var(--accent-2)" font-size="12" text-anchor="middle" font-weight="700">Masakari + Pacemaker · Instance / Host HA</text>
-      <text x="490" y="354" fill="var(--muted)" font-size="10.5" text-anchor="middle">인스턴스 장애 자동 재기동 · 호스트 장애 시 evacuate</text>
-      <text x="490" y="370" fill="var(--muted)" font-size="10.5" text-anchor="middle">HAProxy 기반 API 로드밸런싱 (Controller ↔ 외부망)</text>
+      <text x="490" y="340" fill="var(--accent-2)" font-size="12" text-anchor="middle" font-weight="700">HAProxy · API 이중화 / 로드밸런싱</text>
+      <text x="490" y="362" fill="var(--muted)" font-size="10.5" text-anchor="middle">Controller API 앞단 로드밸런싱 (Controller ↔ 외부망)</text>
 
       <line x1="230" y1="268" x2="230" y2="310" stroke="var(--accent)"/>
       <line x1="750" y1="288" x2="750" y2="310" stroke="var(--accent)"/>
@@ -297,19 +296,6 @@
     </svg>
   </div>
 
-  <div class="table-scroll">
-    <table>
-      <caption>Masakari Instance HA 실증 환경 (Kolla-Ansible, Rocky 9)</caption>
-      <thead><tr><th>노드</th><th>역할</th><th>주요 컴포넌트</th></tr></thead>
-      <tbody>
-        <tr><td>배포</td><td>배포 노드</td><td>kolla-ansible, venv</td></tr>
-        <tr><td>control</td><td>컨트롤러</td><td>masakari_api/engine/hostmonitor, ProxySQL</td></tr>
-        <tr><td>comp-01</td><td>컴퓨트</td><td>nova_compute, masakari_instancemonitor</td></tr>
-        <tr><td>comp-02</td><td>컴퓨트 (증설)</td><td>동일 구성 — evacuate 대상</td></tr>
-      </tbody>
-    </table>
-  </div>
-
   <h2 style="margin-top:56px;">Version Migration</h2>
   <p>OpenStack 릴리스를 지속적으로 추적하며 Antelope → Caracal → Epoxy 순으로 버전별 아키텍처를 설계·구축하고, 버전별 오프라인 패키지 저장소(repo)를 구성해 폐쇄망 환경에서도 동일하게 배포할 수 있도록 만들었습니다.</p>
 
@@ -325,11 +311,6 @@
       </tbody>
     </table>
   </div>
-  <p style="font-size:14.5px;color:var(--muted);">
-    Caracal 업그레이드 중에는 Apache MPM 모듈 미로드, nova-scheduler의 AvailabilityZoneFilter 누락 등을 조치했고,
-    Epoxy 전환 시에는 APT/PyPI/Git 오프라인 저장소 구조를 릴리스별로 분리(<code>/opt/osa/pkg/repo/&lt;release&gt;/</code>)해
-    Caracal·Epoxy 환경을 동시에 운영할 수 있도록 설계했습니다.
-  </p>
 
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>

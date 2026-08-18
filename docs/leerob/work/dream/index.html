@@ -166,34 +166,40 @@
   <script>(function(){var b=document.getElementById('theme-toggle');function paint(){b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';}paint();b.addEventListener('click',function(){var d=document.documentElement;var n=d.getAttribute('data-theme')==='dark'?'light':'dark';d.setAttribute('data-theme',n);try{localStorage.setItem('theme',n);}catch(e){}paint();});})();</script>
 
   <h2>드***</h2>
-  <p><span class="badge badge-build">설계구축</span> <span class="muted">민간기업 · 2023.09 – 2024.09</span></p>
+  <p><span class="badge badge-build">설계구축</span> <span class="muted">민간기업 · 2023.09 – 2024.09 · 클라우드 아키텍트</span></p>
 
   <p class="field-label">배경</p>
   <p>
-    운영 중인 OpenStack 인프라에서 특정 Compute 노드로 인스턴스가 배치되지 않는 현상이 발생했습니다.
+    자체 클라우드 서비스 사업을 위한 OpenStack 기반 프라이빗 클라우드 인프라가 필요했습니다.
+    단기 구축이 아니라 실제 서비스로 운영할 플랫폼이었기 때문에, 초기 아키텍처 설계 단계부터
+    확장성과 운영 편의성을 함께 고려해야 했습니다.
   </p>
 
   <p class="field-label">수행 내용</p>
+  <p>
+    클라우드 아키텍트로서 <a href="../../architecture/">아키텍처 설계</a>와 플랫폼 구축을 함께 맡아
+    약 1년에 걸쳐 프로젝트를 진행했습니다.
+  </p>
   <div class="table-scroll">
     <table>
-      <caption>인스턴스 배치 편중 이슈</caption>
-      <thead><tr><th>구분</th><th>내용</th></tr></thead>
+      <caption>수행 범위</caption>
+      <thead><tr><th>단계</th><th>내용</th></tr></thead>
       <tbody>
-        <tr><td>현상</td><td>특정 Compute 노드로 인스턴스 할당이 되지 않음. 다른 노드를 disable하면 정상 동작</td></tr>
-        <tr><td>원인</td><td>Nova filter_scheduler가 가중치 계산 시 해당 노드를 우선순위에서 지속적으로 배제</td></tr>
-        <tr><td>조치</td><td>scheduler 재시작 + <code>shuffle_best_same_weighed_hosts</code>, <code>num_instances_weight_multiplier</code> 파라미터 적용으로 분산 배치 유도</td></tr>
-        <tr><td>영향도</td><td>Controller 데몬 재기동만 필요해 서비스 영향 없음</td></tr>
+        <tr><td>아키텍처 설계</td><td>서비스 요건에 맞춘 OpenStack 토폴로지 및 자원 구성 설계</td></tr>
+        <tr><td>플랫폼 구축</td><td>Controller/Compute/스토리지 계층 구축 및 서비스 연동</td></tr>
+        <tr><td>검증</td><td>구축 완료 후 기능·구성 검증 수행</td></tr>
+        <tr><td>기간</td><td>2023.09 ~ 2024.09 (약 1년, 단일 프로젝트 기준 최장 기간)</td></tr>
       </tbody>
     </table>
   </div>
   <p>
-    이와 함께 MariaDB 메모리·쿼리 사용량을 분석해 성능 조회 체계를 구성했습니다.
-    자세한 스택은 <a href="../../skills/">보유 기술</a>에서 확인할 수 있습니다.
+    사용한 기술 스택은 <a href="../../skills/">보유 기술</a>에서 확인할 수 있습니다.
   </p>
 
   <p class="field-label">성과</p>
-  <p>Controller 데몬 재기동만으로 서비스 영향 없이 인스턴스 분산 배치를 정상화했습니다.</p>
-
+  <p>
+    약 1년간의 설계·구축을 거쳐 자체 클라우드 서비스 기반이 되는 OpenStack 프라이빗 클라우드 플랫폼을 완성했습니다.
+  </p>
 
   <footer>Built with OpenStack, Ansible, and a lot of troubleshooting logs.</footer>
 </div>
